@@ -1,0 +1,10 @@
+.container-product {
+  margin-top: 30px;
+  box-sizing: border-box;
+}
+.form-product {
+  margin: 10px auto;
+}
+.form-product > input {
+  margin-right: 10px;
+}

@@ -1,21 +1,79 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
-<router-outlet></router-outlet>
+<!--  <h1>Add product</h1>-->
+<!--  <label for="name"> Name: <input type="text" id="name" (keyup)="productTmp.name=$event.target.value"></label><br>-->
+<!--  <label for="image"> Image: <input type="text" id="image"  (keyup)="productTmp.image=$event.target.value"></label><br>-->
+<!--  <label for="price"> Price: <input type="text" id="price" (keyup)="productTmp.price=$event.target.value"></label><br>-->
+<!--  <label for="star"> Star: <input type="text" id="star" (keyup)="productTmp.star=$event.target.value"></label><br>-->
+<!--  <input type="submit" (click)="addProduct(productTmp)" value = "Add new product"><br>-->
+<div class="container container-product">
+  <div class="form-product">
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name"
+             (keyup)="productTmp.name=$event.target.value"
+              [value]='productTmp.name'>
+    </div>
+    <div class="form-group">
+      <label for="image">Product Image</label>
+      <input type="text" class="form-control" id="image" placeholder="Enter image address"
+             (keyup)="productTmp.image=$event.target.value"
+             [value]='productTmp.image'>
+    </div>
+    <div class="form-group">
+      <label for="price">Product Price</label>
+      <input type="text" class="form-control" id="price" placeholder="Enter price"
+             (keyup)="productTmp.price=$event.target.value"
+             [value]='productTmp.price'>
+    </div>
+    <div class="form-group">
+      <label for="star">Product Star</label>
+      <input type="text" class="form-control" id="star" placeholder="Enter star"
+             (keyup)="productTmp.star=$event.target.value"
+             [value]='productTmp.star'>
+    </div>
+    <input type="submit"  class="btn btn-primary" (click)="save()" value="Save">
+    <input type="submit"  class="btn btn-primary" (click)="clear()" value="Clear">
+  </div>
+
+  <div class="card shopping-cart">
+    <div class="card-header bg-dark text-light">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      Product List
+    </div>
+    <div class="card-body" *ngFor="let product of productList">
+      <div class="row col-12" >
+        <div class="col-12 col-sm-12 col-md-2 text-center">
+          <img class="img-responsive" src="{{product.image}}" alt="prewiew" width="120" height="80">
+        </div>
+        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+          <h4 class="product-name"><strong>{{product.name}}</strong></h4>
+          <h4>
+            <small>ID: {{product.id}}</small>
+          </h4>
+          <h4>
+            <small>Star: {{product.star}}</small>
+          </h4>
+        </div>
+        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+          <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+            <h6><strong>Price: <span class="text-muted"></span>{{product.price | currency}}</strong></h6>
+          </div>
+          <div class="col-2 col-sm-2 col-md-2 text-right">
+            <button type="button" class="btn btn-xs" (click)="update(product)">
+              <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-2 col-sm-2 col-md-2 text-right">
+            <button type="button" class="btn btn-xs" (click)="remove(product.id)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+    </div>
+  </div>
+  <hr>
+</div>
+
