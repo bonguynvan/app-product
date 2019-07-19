@@ -1,0 +1,15 @@
+<label class="image-upload-container btn btn-bwm">
+  <span>Select Image</span>
+  <input #imageInput
+         type="file"
+         accept="image/*"
+         (change)="processFile(imageInput)">
+</label>
+
+<div class="img-preview-container" *ngIf="selectedFile">
+  <div class="img-preview{{selectedFile.status === 'fail'?'-error':''}}" [ngStyle]="{'background-img' :'url('+selectedFile.src+')'}">
+  </div>
+  <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+    <div class="img-spinning-circle"></div>
+  </div>
+</div>
